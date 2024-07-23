@@ -1,0 +1,66 @@
+/* Reset margin and padding for a clean slate */
+body, html {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Make sure all content is stacked vertically */
+    margin:0px;
+    padding:0px;
+}
+
+/* Top of screen */
+.heading {
+    margin-top:30px;
+}
+
+/* Title styles */
+.title {
+    font-size: 32px; /* Adjust font size as needed */
+    text-align: center;
+}
+
+.gameplay {
+    display: flex;
+    height: 100vh;      /* Full viewport height */
+    font-size:30px;
+}
+
+.half {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.visual {
+    width: 300px;
+    height: 300px;
+    background-color: lightblue; /* Background color of the circle */
+    border-radius: 50%; /* Make it a circle */
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    margin:50px;
+}
+
+.button {
+    background-color: lightgreen; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.button {
+    transition-duration: 0.4s;
+  }
+  
+  .button:hover {
+    background-color: #04AA6D; /* Green */
+    color: white;
+  }
