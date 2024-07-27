@@ -5,29 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock, Paper, Scissors!</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script src="javascript.js" defer></script>
-
 </head>
 <body>
     <div class="heading">
-        <div class="title">Rock, Paper, Scissors!</div>
-        <div class="score-info"></div>
+        <div class="title">Defeat the robots and save the world!</div>
     </div>
-        <div class="gameplay">
-            <div class="robot-side half">
-                <div class="robot-image visual"></div>
-                <div id="robot-choice">I choose...</div>
-                <div class="player-title">Your opponent: Roboto</div>
-            </div>  
-            <div class="human-side half">
-                <div class="human-image visual"></div>
-                <div class="button-group">
-                    <button class="button" id="rock">Rock</button>
-                    <button class="button" id="paper">Paper</button>
-                    <button class="button" id="scissors">Scissors</button>
-                </div>
-                <div class="player-title">You</div>
-            </div>  
-        </div>
+    <div class="gameplay">
+        <div class="robot-side third">
+            <img src="img/robot-rock.png" alt="robot rock" />
+            <div class="robot-image visual"></div>
+        </div>  
+        <div class="middle-side third">
+            <div id="robot-choice">VS</div>
+            <div class="score-info">
+                <table>
+                    <tr>
+                        <th id="robot-score">0</th>
+                        <th id="human-score">0</th>
+                    </tr>
+                </table>
+            </div>
+        </div>  
+        <div class="human-side third">
+            <img src="img/human-rock.png" alt="human rock" />
+            <div class="human-image visual"></div>
+        </div>  
+    </div>
+    <div class="button-group">
+        <button class="button" id="rock"></button>
+        <button class="button" id="paper"></button>
+        <button class="button" id="scissors"></button>
+    </div>
 </body>
 </html>

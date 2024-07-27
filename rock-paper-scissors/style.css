@@ -5,62 +5,109 @@ body, html {
     justify-content: center;
     align-items: center;
     flex-direction: column; /* Make sure all content is stacked vertically */
-    margin:0px;
-    padding:0px;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif; /* Apply Roboto font to the entire body */
 }
 
 /* Top of screen */
 .heading {
-    margin-top:30px;
+    margin-top: 50px;
+}
+
+img {
+    height: 200px;
+    width: auto;
 }
 
 /* Title styles */
-.title {
+.title, .score-info {
     font-size: 32px; /* Adjust font size as needed */
+    margin: 30px;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    color: white; /* Set text color to white */
+    text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000; /* Thicker black border */
+}
+
+table,
+th,
+td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: center;
+    padding: 20px;
+    color: white; /* Set text color to white */
+    text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000; /* Thicker black border */
+}
+
+.robot-side, .human-side, .middle-side {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px; /* Add margin to space out the elements */
+}
+
+.robot-side, .human-side {
+    background-color: lightyellow;
+    border-radius: 50%;
+}
+
+.middle-side {
+    flex-direction: column; /* Stack the robot-choice and score-info divs */
+    gap: 20px; /* Add gap between the stacked elements */
 }
 
 .gameplay {
     display: flex;
-    height: 100vh;      /* Full viewport height */
-    font-size:30px;
+    justify-content: space-around; /* Ensure space between elements */
+    width: 100%;
+    font-size: 30px;
 }
 
-.half {
-    flex: 1;
+.button-group {
+    margin-top: 20px; /* Adjust the margin as needed */
     display: flex;
     justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-.visual {
-    width: 300px;
-    height: 300px;
-    background-color: lightblue; /* Background color of the circle */
-    border-radius: 50%; /* Make it a circle */
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    margin:50px;
+    gap: 10px; /* Adjust the gap between buttons as needed */
 }
 
 .button {
-    background-color: lightgreen; /* Green */
+    background-color: transparent; /* Ensure the background is transparent */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain; /* Ensure the image fits within the button */
+    height: 100px; /* Adjust the height of the buttons as needed */
+    width: 100px; /* Adjust the width of the buttons as needed */
     border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
+    cursor: pointer;
+    padding: 0; /* Remove default padding */
+    outline: none; /* Remove default outline */
+    opacity: 0.5; /* Make the button semi-transparent */
+    transition: opacity 0.4s, transform 0.4s; /* Smooth transition for opacity and transform */
 }
 
-.button {
-    transition-duration: 0.4s;
-  }
-  
-  .button:hover {
-    background-color: #04AA6D; /* Green */
-    color: white;
-  }
+.button:hover {
+    opacity: 1; /* Fully opaque on hover */
+    transform: scale(1.1); /* Slightly larger on hover */
+}
+
+#rock {
+    background-image: url('img/human-rock.png');
+}
+
+#paper {
+    background-image: url('img/human-paper.png');
+}
+
+#scissors {
+    background-image: url('img/human-scissors.png');
+}
+
+.button span {
+    display: none;
+}
