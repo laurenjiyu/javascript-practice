@@ -1,113 +1,213 @@
-/* Reset margin and padding for a clean slate */
+@font-face { /* Custom video game style font */
+    font-family: 'Joystix'; 
+    src: url('font/joystix.monospace-regular.otf'); 
+}
+
 body, html {
     height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Joystix', 'Roboto', sans-serif;
+    background-image: url('img/dark-bg.png');
+    background-size: cover; 
+    background-position: center;  
+    background-repeat: no-repeat;  
+    background-attachment: fixed; 
+    overflow: hidden; 
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column; /* Make sure all content is stacked vertically */
-    margin: 0;
-    padding: 0;
-    font-family: 'Roboto', sans-serif; /* Apply Roboto font to the entire body */
+    flex-direction: column;
 }
 
-/* Top of screen */
+.winning-bg {
+    background-image: url('img/light-bg.png');
+    animation: fadeIn 2s forwards; 
+}
+
+.losing-bg {
+    background-image: url('img/dark-bg.png');
+    animation: fadeIn 2s forwards; 
+}
+
+.hidden {
+    display: none !important;
+}
+
 .heading {
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 img {
     height: 200px;
     width: auto;
+    z-index: 2;
 }
 
-/* Title styles */
 .title, .score-info {
-    font-size: 32px; /* Adjust font size as needed */
+    font-size: 50px;
     margin: 30px;
     text-align: center;
     display: flex;
     justify-content: center;
-    color: white; /* Set text color to white */
-    text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000; /* Thicker black border */
+    flex-direction: column;
+    color: white;
+    text-shadow: 2px 2px 4px #000;
+}
+
+#score-description {
+    font-size: 20px;
 }
 
 table,
 th,
 td {
-    border: 1px solid black;
     border-collapse: collapse;
     text-align: center;
     padding: 20px;
-    color: white; /* Set text color to white */
-    text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000; /* Thicker black border */
+    color: white;
+    text-shadow: 2px 2px 4px #000;
 }
 
 .robot-side, .human-side, .middle-side {
     position: relative;
-    width: 200px;
-    height: 200px;
+    width: 250px; 
+    height: 250px; 
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 20px; /* Add margin to space out the elements */
+    margin: 10px;
 }
 
 .robot-side, .human-side {
-    background-color: lightyellow;
+    border: 10px solid white;
     border-radius: 50%;
+    position: relative;
+    overflow: hidden; /* Ensure the background circle is within the bounds */
+}
+
+.robot-side::before, .human-side::before {
+    content: '';
+    position: absolute;
+    width: 250px; /* Increased size */
+    height: 250px; /* Increased size */
+    background-color: rgba(110, 110, 110, 0.7); 
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1; /* Place it behind the image */
+}
+
+.winner {   /* Green background of winning side */
+    background-color: rgba(0, 255, 0, 0.7); 
+}
+
+.loser {   /* Green background of winning side */
+    background-color: rgba(255, 0, 0, 0.7); 
 }
 
 .middle-side {
-    flex-direction: column; /* Stack the robot-choice and score-info divs */
-    gap: 20px; /* Add gap between the stacked elements */
+    flex-direction: column;
+    gap: 20px;
 }
 
 .gameplay {
     display: flex;
-    justify-content: space-around; /* Ensure space between elements */
+    justify-content: center;
     width: 100%;
     font-size: 30px;
 }
 
 .button-group {
-    margin-top: 20px; /* Adjust the margin as needed */
+    margin-top: 20px;
     display: flex;
     justify-content: center;
-    gap: 10px; /* Adjust the gap between buttons as needed */
+    gap: 10px;
 }
 
 .button {
-    background-color: transparent; /* Ensure the background is transparent */
+    background-color: transparent;
     background-repeat: no-repeat;
     background-position: center;
-    background-size: contain; /* Ensure the image fits within the button */
-    height: 100px; /* Adjust the height of the buttons as needed */
-    width: 100px; /* Adjust the width of the buttons as needed */
+    background-size: contain;
+    height: 100px;
+    width: 100px;
     border: none;
     cursor: pointer;
-    padding: 0; /* Remove default padding */
-    outline: none; /* Remove default outline */
-    opacity: 0.5; /* Make the button semi-transparent */
-    transition: opacity 0.4s, transform 0.4s; /* Smooth transition for opacity and transform */
+    padding: 0;
+    outline: none;
+    opacity: 0.5;
+    transition: opacity 0.4s, transform 0.4s;
 }
 
 .button:hover {
-    opacity: 1; /* Fully opaque on hover */
-    transform: scale(1.1); /* Slightly larger on hover */
+    opacity: 1;
+    transform: scale(1.1);
 }
 
-#rock {
-    background-image: url('img/human-rock.png');
+.button:disabled {
+    opacity: 0.5; 
+    transform: none;
+    cursor: not-allowed; 
 }
 
-#paper {
-    background-image: url('img/human-paper.png');
-}
-
-#scissors {
-    background-image: url('img/human-scissors.png');
-}
+#rock {background-image: url('img/human-rock.png');}
+#paper {background-image: url('img/human-paper.png');}
+#scissors {background-image: url('img/human-scissors.png');}
 
 .button span {
     display: none;
+}
+
+@keyframes human-bobbing {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(45deg); }
+    50% { transform: rotate(0deg); }
+    75% { transform: rotate(-45deg); }
+    100% { transform: rotate(0deg); }
+}
+
+@keyframes robot-bobbing {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(-45deg); }
+    50% { transform: rotate(0deg); }
+    75% { transform: rotate(45deg); }
+    100% { transform: rotate(0deg); }
+}
+
+.human-bobbing {
+    animation: human-bobbing 0.5s infinite;
+}
+
+.robot-bobbing {
+    animation: robot-bobbing 0.5s infinite;
+}
+
+.restart-button {
+    background-color: #000000;
+    border: none;
+    font-family:'Joystix';
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.restart-button:hover {
+    background-color: white;
+    color:black;
+}
+
+.end-message {
+    font-size: 40px;
+    color: white;
+    text-align: center;
+    margin-top: 50px;
+    text-shadow: 2px 2px 4px #000;
 }
